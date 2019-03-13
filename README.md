@@ -1,5 +1,5 @@
 # Resep Masakan
-BelajarMembuat Aplikasi Resep Masakan Menggunakan Android Studio
+Belajar Membuat Aplikasi Resep Masakan Menggunakan Android Studio
 
 ## Getting Started
 
