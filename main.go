@@ -49,12 +49,15 @@ func main() {
 
 	groupService := service.NewGroupServiceImpl(fs)
 	storyServce := service.NewStoryServiceImpl(fs, idGen)
+	chapterService := service.NewChapterServiceImpl(fs, idGen)
 
 	groupController := controller.NewGroupController(groupService)
 	storyController := controller.NewStoryController(storyServce)
+	chapterController := controller.NewChapterController(chapterService)
 
 	groupController.Route(apiRouter)
 	storyController.Route(apiRouter)
+	chapterController.Route(apiRouter)
 
 	r.Mount("/api/v1", apiRouter)
 
