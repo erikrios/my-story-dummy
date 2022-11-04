@@ -1,11 +1,9 @@
 package controller
 
 import (
-	"encoding/json"
-	"log"
 	"net/http"
 
-	"github.com/erikrios/my-story-dummy/model"
+	"github.com/erikrios/my-story-dummy/util/httperr"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -21,35 +19,9 @@ func (c *customController) Route(r chi.Router) {
 }
 
 func (c customController) notFoundHandler(w http.ResponseWriter, r *http.Request) {
-	message := model.Response[string]{
-		Status:  "error",
-		Message: "failed to access.",
-		Data:    "Route does not exist",
-	}
-
-	resp, err := json.Marshal(message)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	w.Header().Add("Content-Type", "application/json")
-	w.WriteHeader(http.StatusNotFound)
-	w.Write(resp)
+	httperr.NotFound.Response(w)
 }
 
 func (c customController) methodNotAllowed(w http.ResponseWriter, r *http.Request) {
-	message := model.Response[string]{
-		Status:  "error",
-		Message: "failed to access.",
-		Data:    "Method is not valid",
-	}
-
-	resp, err := json.Marshal(message)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	w.Header().Add("Content-Type", "application/json")
-	w.WriteHeader(http.StatusMethodNotAllowed)
-	w.Write(resp)
+	httperr.MethodNotAllowed.Response(w)
 }
