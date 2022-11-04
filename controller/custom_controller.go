@@ -3,7 +3,7 @@ package controller
 import (
 	"net/http"
 
-	"github.com/erikrios/my-story-dummy/util/httperr"
+	"github.com/erikrios/my-story-dummy/util/customerr"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -19,9 +19,9 @@ func (c *customController) Route(r chi.Router) {
 }
 
 func (c customController) notFoundHandler(w http.ResponseWriter, r *http.Request) {
-	httperr.NotFound.Response(w)
+	customerr.NotFound.HTTPResponse(w)
 }
 
 func (c customController) methodNotAllowed(w http.ResponseWriter, r *http.Request) {
-	httperr.MethodNotAllowed.Response(w)
+	customerr.MethodNotAllowed.HTTPResponse(w)
 }
