@@ -29,11 +29,13 @@ func (l *localFS) CreateDir(name string) error {
 	return os.Mkdir(fmt.Sprintf("%s/%s", l.wd, name), os.ModePerm)
 }
 
+// IsExists check whether a directory with given name is exists relatively to the working directory
 func (l *localFS) IsExists(name string) bool {
 	_, err := os.Stat(fmt.Sprintf("%s/%s", l.wd, name))
 	return !os.IsNotExist(err)
 }
 
+// CreateFile create a file with given name relatively to the working directory
 func (l *localFS) CreateFile(name string) error {
 	_, err := os.Create(fmt.Sprintf("%s/%s", l.wd, name))
 	return err
