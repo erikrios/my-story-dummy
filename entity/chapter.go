@@ -2,7 +2,7 @@ package entity
 
 type Chapter struct {
 	ID        string `json:"id"`
-	StoryID   string `json:"story_id"`
+	StoryID   string `json:"storyID"`
 	Title     string `json:"title"`
 	Content   string `json:"content"`
 	Views     uint   `json:"views"`
