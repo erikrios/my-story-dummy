@@ -52,7 +52,7 @@ func (e Error) HTTPResponse(w http.ResponseWriter) {
 	switch e {
 	case NotFound:
 		message = "failed to access"
-		data = "Route does not exist"
+		data = "Resource does not exist"
 		code = http.StatusNotFound
 	case MethodNotAllowed:
 		message = "failed to access"

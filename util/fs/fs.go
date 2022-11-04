@@ -54,6 +54,14 @@ func (l *localFS) WriteFile(name string, data []byte) error {
 
 	defer f.Close()
 
+	if err := f.Truncate(0); err != nil {
+		return err
+	}
+
+	if _, err := f.Seek(0, 0); err != nil {
+		return err
+	}
+
 	if _, err := f.Write(data); err != nil {
 		return err
 	}

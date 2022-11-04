@@ -21,7 +21,7 @@ func NewGroupServiceImpl(fs cfs.FS) *groupServiceImpl {
 
 func (g *groupServiceImpl) Create(p payload.CreateGroup) (err error) {
 	if validateErr := validation.Validate.Struct(p); validateErr != nil {
-		err = customerr.PayloadParse
+		err = customerr.InvalidPayload
 		return
 	}
 
