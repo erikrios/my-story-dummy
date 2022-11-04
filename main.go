@@ -5,7 +5,9 @@ import (
 	"net/http"
 
 	"github.com/erikrios/my-story-dummy/controller"
+	"github.com/erikrios/my-story-dummy/service"
 	cfs "github.com/erikrios/my-story-dummy/util/fs"
+	_ "github.com/erikrios/my-story-dummy/validation"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
@@ -39,7 +41,9 @@ func main() {
 
 	apiRouter := chi.NewRouter()
 
-	groupController := controller.NewGroupController()
+	groupService := service.NewGroupServiceImpl(fs)
+
+	groupController := controller.NewGroupController(groupService)
 	groupController.Route(apiRouter)
 
 	r.Mount("/api/v1", apiRouter)
