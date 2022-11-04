@@ -14,8 +14,10 @@ func main() {
 	r.Use(middleware.Logger)
 
 	helloController := controller.NewHelloController()
+	customController := controller.NewCustomController()
 
 	helloController.Route(r)
+	customController.Route(r)
 
 	port := ":3000"
 	log.Printf("Server starting on port %s\n", port)
