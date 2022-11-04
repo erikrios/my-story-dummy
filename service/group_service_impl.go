@@ -23,14 +23,14 @@ func (g *groupServiceImpl) Create(p payload.CreateGroup) (err error) {
 		return
 	}
 
-	absolutePath := fmt.Sprintf("%s/%s", "data", p.Name)
+	absolutePath := fmt.Sprintf("%s/%s.json", "data", p.Name)
 
 	if g.fs.IsExists(absolutePath) {
 		err = customerr.ResourceAlreadyExists
 		return
 	}
 
-	if dirErr := g.fs.CreateDir(absolutePath); dirErr != nil {
+	if dirErr := g.fs.CreateFile(absolutePath); dirErr != nil {
 		err = customerr.Internal
 		return
 	}
